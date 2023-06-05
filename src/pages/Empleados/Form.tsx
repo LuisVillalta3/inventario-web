@@ -65,6 +65,7 @@ const EmpleadosForm = () => {
           value={formik.values.idempleado}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
+          label="ID de empleado"
           id="idempleado"
           name="idempleado"
         />
@@ -78,6 +79,7 @@ const EmpleadosForm = () => {
           onBlur={formik.handleBlur}
           id="nombre"
           name="nombre"
+          label="Nombre"
         />
 
         <TextInput
@@ -89,6 +91,7 @@ const EmpleadosForm = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           id="email"
+          label="Email"
           name="email"
         />
 
@@ -101,6 +104,7 @@ const EmpleadosForm = () => {
           onBlur={formik.handleBlur}
           id="dui"
           name="dui"
+          label="Dui"
         />
 
         <TextInput
@@ -134,6 +138,7 @@ const EmpleadosForm = () => {
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           id="direccion"
+          label="Dirección"
           name="direccion"
           noresize
           rows={6}
@@ -151,6 +156,7 @@ const EmpleadosForm = () => {
           id="telefono"
           type="tel"
           name="telefono"
+          label="Teléfono"
         />
 
         <FormControlLabel
@@ -178,6 +184,7 @@ const EmpleadosForm = () => {
             <br />
             <TextInput
               placeholder="Contraseña"
+              label="Contraseña"
               type="password"
               error={
                 (formik.touched.contrasena &&
@@ -194,6 +201,7 @@ const EmpleadosForm = () => {
             />
             <TextInput
               placeholder="Confirmar contraseña"
+              label="Confirmar contraseña"
               type="password"
               error={
                 (formik.touched.confirmarContrasena &&

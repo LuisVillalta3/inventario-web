@@ -13,6 +13,7 @@ type TextAreaProps = {
   name: string;
   noresize?: boolean;
   rows?: number;
+  label?: string;
 };
 
 const TextArea: React.FC<TextAreaProps> = ({
@@ -26,10 +27,12 @@ const TextArea: React.FC<TextAreaProps> = ({
   value,
   name,
   rows,
+  label,
 }) => {
   return (
     <div className="textarea">
       <div className="textarea-field">
+        {label && <label htmlFor={id}>{label}</label>}
         <textarea
           id={id}
           name={name}

@@ -38,6 +38,7 @@ const ProveedoresForm = () => {
       <form onSubmit={formik.handleSubmit} style={{ maxWidth: 750 }}>
         <TextInput
           placeholder="ID de provedor"
+          label="ID de provedor"
           error={
             (formik.touched.idProveedor && formik.errors.idProveedor) as boolean
           }
@@ -53,6 +54,7 @@ const ProveedoresForm = () => {
 
         <TextInput
           placeholder="Nombre"
+          label="Nombre"
           error={(formik.touched.nombre && formik.errors.nombre) as boolean}
           errorMessage={(formik.touched.nombre && formik.errors.nombre) || ""}
           value={formik.values.nombre}
@@ -63,6 +65,7 @@ const ProveedoresForm = () => {
         />
 
         <TextArea
+          label="Dirección"
           placeholder="Dirección"
           error={
             (formik.touched.direccion && formik.errors.direccion) as boolean
@@ -81,6 +84,7 @@ const ProveedoresForm = () => {
 
         <TextInput
           placeholder="Teléfono"
+          label="Teléfono"
           error={(formik.touched.telefono && formik.errors.telefono) as boolean}
           errorMessage={
             (formik.touched.telefono && formik.errors.telefono) || ""
@@ -95,6 +99,7 @@ const ProveedoresForm = () => {
 
         <TextInput
           placeholder="Fax"
+          label="Fax"
           error={(formik.touched.fax && formik.errors.fax) as boolean}
           errorMessage={(formik.touched.fax && formik.errors.fax) || ""}
           value={formik.values.fax}
