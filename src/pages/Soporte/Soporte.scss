@@ -1,0 +1,53 @@
+.soporte-lgn {
+  background: #05374c;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  form {
+    width: 100%;
+    max-width: 420px;
+    background: #ebebeb;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  h1 {
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  button,
+  a {
+    background: #077187;
+    border: 2px #077187 solid;
+    color: white;
+    cursor: pointer;
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 0;
+    text-align: center;
+    transition: 0.4s;
+    width: 100%;
+
+    &:hover {
+      background: lighten(#077187, 4%);
+    }
+  }
+
+  a {
+    margin-top: 16px;
+    background: transparent;
+    color: #077187;
+    text-decoration: none;
+
+    &:hover {
+      color: white;
+      background: lighten(#077187, 10%);
+    }
+  }
+}

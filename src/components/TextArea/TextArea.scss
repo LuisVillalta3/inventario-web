@@ -1,0 +1,43 @@
+.textarea {
+  margin-bottom: 20px !important;
+  display: block;
+  textarea {
+    background: white;
+    border: 0;
+    border-bottom: 3px solid #077187;
+    transition: 0.3s;
+    width: 100%;
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 14px;
+    font-family: "Montserrat", sans-serif;
+
+    &.noresize {
+      resize: none;
+    }
+
+    &:focus {
+      outline: none;
+    }
+
+    &::placeholder {
+      color: #077187;
+      font-weight: 600;
+    }
+
+    &.password {
+      padding: 12px 36px 12px 16px;
+    }
+  }
+
+  &-field {
+    position: relative;
+  }
+
+  .errorMessage {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+    font-weight: 600;
+  }
+}
