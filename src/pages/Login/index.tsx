@@ -1,11 +1,13 @@
 import React from "react";
 import { TextInput } from "@/components";
 import "./Login.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { validationLoginSchema } from "@/validations/loginSchema";
 
 const Login = () => {
+  const navigate = useNavigate();
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -16,6 +18,7 @@ const Login = () => {
     validateOnChange: true,
     onSubmit: (values) => {
       console.log("values", values);
+      navigate("/");
     },
   });
 
