@@ -8,3 +8,6 @@ export { default as EmpleadosForm } from './Empleados/Form';
 // BODEGAS
 export { default as Bodegas } from './Bodegas';
 export { default as BodegasForm } from './Bodegas/Form';
+// PRODUCTOS
+export { default as Productos } from './Productos';
+export { default as ProductosForm } from './Productos/Form';

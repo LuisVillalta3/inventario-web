@@ -5,6 +5,8 @@ import {
   Dashboard,
   Empleados,
   EmpleadosForm,
+  Productos,
+  ProductosForm,
   Proveedores,
   ProveedoresForm,
 } from "@/pages";
@@ -25,6 +27,10 @@ const AdminRoutes = () => (
     <Route path="/bodegas" element={<Bodegas />} />
     <Route path="/bodegas/nuevo" element={<BodegasForm />} />
     <Route path="/bodegas/:id" element={<BodegasForm />} />
+    {/* PRODUCTOS */}
+    <Route path="/productos" element={<Productos />} />
+    <Route path="/productos/nuevo" element={<ProductosForm />} />
+    <Route path="/productos/:id" element={<ProductosForm />} />
   </Routes>
 );
 
