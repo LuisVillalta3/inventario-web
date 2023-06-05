@@ -1,6 +1,13 @@
 .text-input {
   margin-bottom: 20px !important;
   display: block;
+  label {
+    color: #077187;
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 4px;
+  }
   input {
     background: white;
     border: 0;

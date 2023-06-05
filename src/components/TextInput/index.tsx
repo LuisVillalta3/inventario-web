@@ -14,6 +14,7 @@ type TextInputProps = {
   value?: string;
   id: string;
   name: string;
+  label?: string;
 };
 
 const TextInput: React.FC<TextInputProps> = ({
@@ -25,6 +26,7 @@ const TextInput: React.FC<TextInputProps> = ({
   onBlur,
   onChange,
   value,
+  label,
   name,
 }) => {
   const [inputType, setInputType] = useState(type);
@@ -32,6 +34,7 @@ const TextInput: React.FC<TextInputProps> = ({
   return (
     <div className="text-input">
       <div className="text-input-field">
+        {label && <label htmlFor={id}>{label}</label>}
         <input
           type={inputType}
           placeholder={placeholder}
