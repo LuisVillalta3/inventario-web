@@ -1,5 +1,7 @@
 import React from "react";
 import {
+  Bodegas,
+  BodegasForm,
   Dashboard,
   Empleados,
   EmpleadosForm,
@@ -19,6 +21,10 @@ const AdminRoutes = () => (
     <Route path="/empleados" element={<Empleados />} />
     <Route path="/empleados/nuevo" element={<EmpleadosForm />} />
     <Route path="/empleados/:id" element={<EmpleadosForm />} />
+    {/* BODEGAS */}
+    <Route path="/bodegas" element={<Bodegas />} />
+    <Route path="/bodegas/nuevo" element={<BodegasForm />} />
+    <Route path="/bodegas/:id" element={<BodegasForm />} />
   </Routes>
 );
 

@@ -5,3 +5,6 @@ export { default as Proveedores } from './Proveedores';
 export { default as ProveedoresForm } from './Proveedores/Form';
 export { default as Empleados } from './Empleados';
 export { default as EmpleadosForm } from './Empleados/Form';
+// BODEGAS
+export { default as Bodegas } from './Bodegas';
+export { default as BodegasForm } from './Bodegas/Form';
