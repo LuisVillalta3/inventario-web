@@ -1,0 +1,15 @@
+.link-button button {
+  background: #077187;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: 700;
+  text-align: center;
+  padding: 12px 30px;
+  cursor: pointer;
+  transition: 0.3s;
+
+  &:hover {
+    background: #0b8ea0;
+  }
+}

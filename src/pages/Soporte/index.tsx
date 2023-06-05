@@ -1,9 +1,8 @@
 import React from "react";
-import { TextInput } from "@/components";
+import { TextInput, TextArea } from "@/components";
 import "./Soporte.scss";
 import { useFormik } from "formik";
 import { validationSoporteSchema } from "@/validations/soporteSchema";
-import TextArea from "@/components/TextArea";
 
 const Soporte = () => {
   const formik = useFormik({

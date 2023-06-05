@@ -7,35 +7,46 @@ import InventoryIcon from "@mui/icons-material/Inventory";
 import SettingsIcon from "@mui/icons-material/Settings";
 import { Button, Tooltip } from "@mui/material";
 import classNames from "classnames";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useLayoutStore } from "@/store";
 
 const menuOptions = [
   {
     icon: <HomeIcon fontSize="large" />,
-    label: "Inicio",
+    href: "/",
+    label: "Dashboard",
   },
   {
     icon: <GroupIcon fontSize="large" />,
+    href: "/proveedores",
     label: "Proveedores",
   },
   {
     icon: <PersonIcon fontSize="large" />,
+    href: "/empleados",
     label: "Empleados",
   },
   {
     icon: <ApartmentIcon fontSize="large" />,
+    href: "/bodegas",
     label: "Bodegas",
   },
   {
     icon: <InventoryIcon fontSize="large" />,
+    href: "/productos",
     label: "Productos",
   },
 ];
 
 const AppAside = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const isSidebarOpen = useLayoutStore((state) => state.isSidebarOpen);
+
+  const isCurrentRoute = (href: string, label: string) => {
+    if (label === "Dashboard") return location.pathname === "/";
+    return location.pathname.includes(href);
+  };
 
   return (
     <nav
@@ -48,12 +59,13 @@ const AppAside = () => {
           "menu-items-no--collapsed": isSidebarOpen,
         })}
       >
-        {menuOptions.map(({ icon, label }) => (
+        {menuOptions.map(({ icon, label, href }) => (
           <Tooltip title={label} key={label} placement="right">
             <Button
               className={classNames({
-                current: location.pathname === "/" && label === "Inicio",
+                current: isCurrentRoute(href, label),
               })}
+              onClick={() => navigate(href)}
             >
               {icon}
               <p>{label}</p>
