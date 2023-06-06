@@ -6,7 +6,7 @@ export type AuthStore = {
 }
 
 const useAuthStore = create<AuthStore>((set) => ({
-  token: '',
+  token: localStorage.getItem('token') || '',
   setToken: (token) => set({ token })
 }))
 

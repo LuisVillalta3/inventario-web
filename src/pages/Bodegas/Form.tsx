@@ -1,9 +1,12 @@
 import { Button, TextArea, TextInput } from "@/components";
+import { bodegasService } from "@/services/bodegas.service";
 import { useLayoutStore } from "@/store";
+import { Bodega } from "@/types/models/bodega";
 import { validationBodegaSchema } from "@/validations/bodegaSchame";
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const BodegasForm = () => {
   const setAppTitle = useLayoutStore((state) => state.setAppTitle);
@@ -22,9 +25,20 @@ const BodegasForm = () => {
     validationSchema: validationBodegaSchema,
     validateOnBlur: true,
     validateOnChange: true,
-    onSubmit: (values) => {
-      console.log("values", values);
-      navigate("/Bodegas");
+    onSubmit: async (values) => {
+      const proveedor: Bodega = {
+        code: values.idBodega,
+        nombre: values.nombre,
+        telefono: values.telefono,
+        direccion: values.direccion,
+        fax: values.fax,
+        disponible: true,
+      };
+      const res = await bodegasService.createBodega(proveedor);
+      if (res.id) {
+        toast("Proveedor creado con éxito");
+        navigate("/bodegas");
+      }
     },
   });
 
