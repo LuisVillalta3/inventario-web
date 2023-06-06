@@ -16,7 +16,7 @@ const DataTable: React.FC<DataTableProps> = ({
   defaultPage,
   pageSizeOptions,
 }) => (
-  <div style={{ background: "#fff", borderRadius: 4 }}>
+  <div style={{ background: "#fff", borderRadius: 4, maxWidth: 1200 }}>
     <DataGrid
       rows={rows}
       columns={columns}

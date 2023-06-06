@@ -34,7 +34,7 @@ const Productos = () => {
 
   return (
     <>
-      <div style={{ textAlign: "right", marginBottom: 16 }}>
+      <div style={{ textAlign: "right", marginBottom: 16, maxWidth: 1200 }}>
         <LinkButton to="/productos/nuevo" label="Agregar producto" />
       </div>
       <DataTable columns={columns} rows={rows} />

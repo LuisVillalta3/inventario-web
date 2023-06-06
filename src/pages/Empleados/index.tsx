@@ -40,7 +40,7 @@ const Empleados = () => {
 
   return (
     <>
-      <div style={{ textAlign: "right", marginBottom: 16 }}>
+      <div style={{ textAlign: "right", marginBottom: 16, maxWidth: 1200 }}>
         <LinkButton to="/empleados/nuevo" label="Agregar empleado" />
       </div>
       <DataTable columns={columns} rows={rows} />
