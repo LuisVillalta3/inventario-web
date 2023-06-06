@@ -6,6 +6,9 @@ import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import _ from "lodash";
+import { toast } from "react-toastify";
+import { empleadosService } from "@/services/empleados.service";
+import { Empleado } from "@/types/models/empleado";
 
 const password = _.times(20, () => _.random(35).toString(36)).join("");
 
@@ -16,7 +19,6 @@ const EmpleadosForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      idempleado: "",
       nombre: "",
       telefono: "",
       direccion: "",
@@ -30,9 +32,22 @@ const EmpleadosForm = () => {
     validationSchema: validationEmpleadoSchema,
     validateOnBlur: true,
     validateOnChange: true,
-    onSubmit: (values) => {
-      console.log("values", values);
-      navigate("/empleados");
+    onSubmit: async (values) => {
+      const proveedor: Empleado = {
+        nombre: values.nombre,
+        telefono: values.telefono,
+        direccion: values.direccion,
+        email: values.email,
+        fecha_contratacion: values.fechaContratacion,
+        dui: values.dui,
+        password: values.contrasena,
+        c_password: values.confirmarContrasena,
+      };
+      const res = await empleadosService.createempleado(proveedor);
+      if (res.id) {
+        toast("Empleado creado con éxito");
+        navigate("/empleados");
+      }
     },
   });
 
@@ -54,22 +69,6 @@ const EmpleadosForm = () => {
   return (
     <>
       <form onSubmit={formik.handleSubmit} style={{ maxWidth: 750 }}>
-        <TextInput
-          placeholder="ID de empleado"
-          error={
-            (formik.touched.idempleado && formik.errors.idempleado) as boolean
-          }
-          errorMessage={
-            (formik.touched.idempleado && formik.errors.idempleado) || ""
-          }
-          value={formik.values.idempleado}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          label="ID de empleado"
-          id="idempleado"
-          name="idempleado"
-        />
-
         <TextInput
           placeholder="Nombre"
           error={(formik.touched.nombre && formik.errors.nombre) as boolean}
