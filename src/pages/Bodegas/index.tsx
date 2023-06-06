@@ -6,12 +6,12 @@ import { GridColDef } from "@mui/x-data-grid";
 import React, { useEffect, useState } from "react";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID" },
-  { field: "code", headerName: "Código" },
-  { field: "nombre", headerName: "Nombre" },
-  { field: "direccion", headerName: "Dirección" },
-  { field: "telefono", headerName: "Teléfono" },
-  { field: "fax", headerName: "fax" },
+  { field: "id", headerName: "ID", flex: 1 },
+  { field: "code", headerName: "Código", flex: 1 },
+  { field: "nombre", headerName: "Nombre", flex: 1 },
+  { field: "direccion", headerName: "Dirección", flex: 1 },
+  { field: "telefono", headerName: "Teléfono", flex: 1 },
+  { field: "fax", headerName: "fax", flex: 1 },
 ];
 
 const Bodegas = () => {

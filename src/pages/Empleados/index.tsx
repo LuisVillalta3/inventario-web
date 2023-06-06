@@ -6,19 +6,21 @@ import { GridColDef } from "@mui/x-data-grid";
 import React, { useEffect, useState } from "react";
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID" },
-  { field: "nombre", headerName: "Nombre" },
-  { field: "dui", headerName: "Dui" },
+  { field: "id", headerName: "ID", flex: 1 },
+  { field: "nombre", headerName: "Nombre", flex: 1 },
+  { field: "dui", headerName: "Dui", flex: 1 },
   {
     field: "email",
     headerName: "Email",
+    flex: 1,
   },
   {
     field: "fecha_contratacion",
     headerName: "Fecha de contratación",
+    flex: 1,
   },
-  { field: "direccion", headerName: "Dirección" },
-  { field: "telefono", headerName: "Teléfono" },
+  { field: "direccion", headerName: "Dirección", flex: 1 },
+  { field: "telefono", headerName: "Teléfono", flex: 1 },
 ];
 
 const Empleados = () => {
