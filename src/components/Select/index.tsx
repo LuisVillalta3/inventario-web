@@ -1,6 +1,5 @@
 import React, { HTMLInputTypeAttribute } from "react";
 import "./TextInput.scss";
-import classNames from "classnames";
 
 export type ValueSchema = {
   value: string;
@@ -38,10 +37,16 @@ const Select: React.FC<SelectProps> = ({
     <div className="text-input">
       <div className="text-input-field">
         {label && <label htmlFor={id}>{label}</label>}
-        <select name={name} id={id}>
+        <select
+          name={name}
+          id={id}
+          value={value}
+          onChange={onChange}
+          onBlur={onBlur}
+        >
           {blank && <option value="">{blank}</option>}
           {options.map((option) => (
-            <option selected={option.value === value} value={option.value}>
+            <option key={option.value} value={option.value}>
               {option.label}
             </option>
           ))}

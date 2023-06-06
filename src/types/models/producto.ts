@@ -1,9 +1,7 @@
-export type producto = {
+export type Producto = {
   id?: number | string
-  idProveedor: string
+  code: string
   nombre: string
-  email: string | null
-  direccion: string | null
-  telefono: string | null
-  fax: string | null
+  id_proveedor: string | null
+  descripcion: string | null
 }

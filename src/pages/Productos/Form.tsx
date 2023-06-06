@@ -1,15 +1,32 @@
 import { Button, TextArea, TextInput, Select } from "@/components";
 import { ValueSchema } from "@/components/Select";
+import { productosService } from "@/services/productos.service";
+import { proveedoresService } from "@/services/proveedores.service";
 import { useLayoutStore } from "@/store";
+import { Producto } from "@/types/models/producto";
 import { validationProductoSchema } from "@/validations/productoSchame";
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const BodegasForm = () => {
   const setAppTitle = useLayoutStore((state) => state.setAppTitle);
   const { id } = useParams<any>();
   const navigate = useNavigate();
+  const [proveedores, setProveedores] = React.useState<ValueSchema[]>([]);
+
+  useEffect(() => {
+    const getProveedores = async () => {
+      const res = await proveedoresService.getProveedores();
+      const values: ValueSchema[] = res.map(({ id, nombre }) => ({
+        value: id as string,
+        label: nombre,
+      }));
+      setProveedores(values);
+    };
+    getProveedores();
+  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -21,9 +38,18 @@ const BodegasForm = () => {
     validationSchema: validationProductoSchema,
     validateOnBlur: true,
     validateOnChange: true,
-    onSubmit: (values) => {
-      console.log("values", values);
-      navigate("/Bodegas");
+    onSubmit: async (values) => {
+      const proveedor: Producto = {
+        nombre: values.nombre,
+        descripcion: values.descripcion,
+        id_proveedor: values.proveedorId,
+        code: values.idProducto,
+      };
+      const res = await productosService.createProducto(proveedor);
+      if (res.id) {
+        toast("Producto creado con éxito");
+        navigate("/productos");
+      }
     },
   });
 
@@ -66,7 +92,7 @@ const BodegasForm = () => {
         <Select
           blank="Id del proveedor"
           label="Id del proveedor"
-          options={[] as ValueSchema[]}
+          options={proveedores}
           error={
             (formik.touched.proveedorId && formik.errors.proveedorId) as boolean
           }
@@ -82,6 +108,8 @@ const BodegasForm = () => {
 
         <TextArea
           placeholder="Descripcion"
+          noresize
+          rows={3}
           label="Descripcion"
           error={
             (formik.touched.descripcion && formik.errors.descripcion) as boolean
