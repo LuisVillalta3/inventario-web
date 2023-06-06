@@ -1,9 +1,12 @@
 import { Button, TextArea, TextInput } from "@/components";
+import { proveedoresService } from "@/services/proveedores.service";
 import { useLayoutStore } from "@/store";
+import { Proveedor } from "@/types/models/proveedor";
 import { validationProveedorSchema } from "@/validations/proveedorSchame";
 import { useFormik } from "formik";
 import React, { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ProveedoresForm = () => {
   const setAppTitle = useLayoutStore((state) => state.setAppTitle);
@@ -22,9 +25,20 @@ const ProveedoresForm = () => {
     validationSchema: validationProveedorSchema,
     validateOnBlur: true,
     validateOnChange: true,
-    onSubmit: (values) => {
-      console.log("values", values);
-      navigate("/proveedores");
+    onSubmit: async (values) => {
+      const proveedor: Proveedor = {
+        idProveedor: values.idProveedor,
+        nombre: values.nombre,
+        telefono: values.telefono,
+        direccion: values.direccion,
+        fax: values.fax,
+        email: values.email,
+      };
+      const res = await proveedoresService.createProveedor(proveedor);
+      if (res.id) {
+        toast("Proveedor creado con éxito");
+        navigate("/proveedores");
+      }
     },
   });
 
@@ -62,6 +76,18 @@ const ProveedoresForm = () => {
           onBlur={formik.handleBlur}
           id="nombre"
           name="nombre"
+        />
+
+        <TextInput
+          placeholder="Email"
+          label="Email"
+          error={(formik.touched.email && formik.errors.email) as boolean}
+          errorMessage={(formik.touched.email && formik.errors.email) || ""}
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          id="email"
+          name="email"
         />
 
         <TextArea

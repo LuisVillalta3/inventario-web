@@ -11,12 +11,13 @@ import {
   MenuItem,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useLayoutStore } from "@/store";
+import { useAuthStore, useLayoutStore } from "@/store";
 
 const AppHeader = () => {
   const navigate = useNavigate();
   const appTitle = useLayoutStore((state) => state.appTitle);
   const toggleSidebar = useLayoutStore((state) => state.toggleSidebar);
+  const setToken = useAuthStore((state) => state.setToken);
 
   const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
@@ -28,6 +29,12 @@ const AppHeader = () => {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    setToken("");
+    navigate("/login");
   };
 
   return (
@@ -60,7 +67,7 @@ const AppHeader = () => {
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-            <MenuItem key="Cerrar sesión" onClick={() => navigate("/login")}>
+            <MenuItem key="Cerrar sesión" onClick={() => logout()}>
               <Typography textAlign="center">Cerrar sesión</Typography>
             </MenuItem>
           </Menu>

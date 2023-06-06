@@ -4,15 +4,18 @@ import { Login, Soporte } from "./pages";
 import "./index.scss";
 import PrivateRoute from "./components/PrivateRoute";
 import AdminRoutes from "./components/AdminRoutes";
+import { useAuthStore } from "./store";
 
 function App() {
+  const token = useAuthStore((state) => state.token);
+
   return (
     <BrowserRouter>
       <Routes>
         <Route
           path="/*"
           element={
-            <PrivateRoute isAuth={true}>
+            <PrivateRoute isAuth={token !== ""}>
               <AdminRoutes />
             </PrivateRoute>
           }

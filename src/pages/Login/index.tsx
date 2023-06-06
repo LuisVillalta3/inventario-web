@@ -4,9 +4,12 @@ import "./Login.scss";
 import { Link, useNavigate } from "react-router-dom";
 import { useFormik } from "formik";
 import { validationLoginSchema } from "@/validations/loginSchema";
+import { loginService } from "@/services/login.service";
+import { useAuthStore } from "@/store";
 
 const Login = () => {
   const navigate = useNavigate();
+  const setToken = useAuthStore((state) => state.setToken);
 
   const formik = useFormik({
     initialValues: {
@@ -16,9 +19,13 @@ const Login = () => {
     validationSchema: validationLoginSchema,
     validateOnBlur: true,
     validateOnChange: true,
-    onSubmit: (values) => {
-      console.log("values", values);
-      navigate("/");
+    onSubmit: async ({ email, password }) => {
+      const res = await loginService.login(email, password);
+      if (res?.token) {
+        localStorage.setItem("token", res.token);
+        setToken(res.token);
+        navigate("/");
+      }
     },
   });
 

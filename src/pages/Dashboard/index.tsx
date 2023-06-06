@@ -6,7 +6,7 @@ const Dashboard = () => {
 
   useEffect(() => setAppTitle("Dashboard"), [setAppTitle]);
 
-  return <div>sdasa</div>;
+  return <div>Dashboard</div>;
 };
 
 export default Dashboard;
